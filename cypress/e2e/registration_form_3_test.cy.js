@@ -24,5 +24,25 @@ Task list:
     * all fields are filled in + corresponding assertions
     * only mandatory fields are filled in + corresponding assertions
     * mandatory fields are absent + corresponding assertions (try using function)
-    * add file functionlity(google yourself for solution!)
+    * add file functionality(google yourself for solution!)
  */
+
+it.only('User cannot submit form without providing name', () => {
+    inputValidData('Mansvards')
+    cy.get('#name').scrollIntoView()
+    cy.get('#name').clear()
+    cy.get('#name').type('Savsvards')
+    cy.get('input[type="submit"]').should('be.disabled')
+    })
+    
+    function inputValidData(_Mansvards) {
+    cy.log('Name will be filled')
+    cy.get('#name').type('Savsvards')
+    cy.get('input[name="email"]').type('mans@meils.com')
+    cy.get('#country').select('Spain')
+    cy.get('#city').select('Madrid')
+    cy.get(':checkbox').check().should('be.checked')
+    }
+
+
+  
